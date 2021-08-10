@@ -27,20 +27,22 @@ module.exports = {
         }
       },
       {
-          test: /\.s[ac]ss$/i,
-          exclude: /node_modules/,
-          use: [
-            "style-loader",
-            "css-loader",
-            {
-              loader: "sass-loader",
-              options: {
-                // Prefer `dart-sass`
-                implementation: require("sass"),
-              },
-            },
-          ],
-      }]
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader'
+      },
+  ]
   }
   
 }

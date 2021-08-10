@@ -1,0 +1,27 @@
+
+body {
+  /* background: url('https://i.ytimg.com/vi/dqoHcfMn6Ck/maxresdefault.jpg'); */
+  background-color: rgba(216, 216, 216, 40);
+}
+
+.headers {
+  color: black;
+  /* z-index: 10; */
+
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+}
+
+#searchBar{
+  width: 60%;
+  height: 30px;
+}
+
+#searchCont {
+  display:flex;
+  justify-content: center;
+  width: 100%
+}
