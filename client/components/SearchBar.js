@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import ResultBox from './ResultBox'
 // import fetch from 'fetch';
 
 
@@ -77,14 +78,17 @@ class SearchBar extends Component {
 
   render() {
     return (
+      <section id='page'>
     <div id='searchCont'>
        <label htmlFor="site-search"></label>
         <input type='search' id='searchbar' ></input>
       <button id='searchButton' onClick={this.handleClick}>Search Films</button>
-      <div id='resultCont'>
-
-      </div>
     </div>
+    <div id='resultCont'>
+      <h1>Testing</h1>
+      <ResultBox title={'yeah'}/>
+    </div>
+    </section>
 )
   }
 }
