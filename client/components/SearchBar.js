@@ -45,6 +45,13 @@ return results.d[0].id;
 
 }
 
+const dummyObj = {
+  Title: 'Avengers End Game Babeey',
+  Year: '2019',
+  Ratings: [{Source: 'IMDB', Value: 10}, {Source: 'METACRITIC', Value: 10}, {Source: 'ROTTEN TOMATOES', Value: 10}],
+  Poster: 'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg'
+}
+
 
 
 class SearchBar extends Component {
@@ -52,31 +59,48 @@ class SearchBar extends Component {
     super();
     this.state = {
       searchText: '',
-      results: [],
+      results: [dummyObj],
     };
     this.handleClick = this.handleClick.bind(this);
-    //his.getInput = this.getInput.bind(this);
+  
   }
 
-  // getInput(e) {
-  //   let result = document.getElementById('searchbar').value;
-  //   this.setState({ searchText: result});
-  //   console.log(this.state.searchText)
-  // }
 
   async handleClick(e) {
 
-    let search = await document.getElementById('searchbar').value;
-    console.log(search)
-    let searchID = await fetchIMDB(search);
-    let finalResult = await fetchTitle(searchID);
-    this.setState({results: [finalResult]})
-    console.log(this.state);
-    document.getElementById('searchbar').value = ''
-
+    // await this.setState({ results: []});
+    // let search = await document.getElementById('searchbar').value;
+    // document.getElementById('searchbar').value = ''
+    // let searchID = await fetchIMDB(search);
+    // console.log(searchID)
+    // if (searchID[0] === '/') return document.getElementById('searchbar').value = 'Could not find title';
+    // else{
+    // let finalResult = await fetchTitle(searchID);
+    // this.setState({results: [finalResult]})
+    // console.log(this.state);
+    // }
   }
 
   render() {
+
+    const resultsRender = [];
+
+    if (this.state.results.length) {
+      this.state.results.forEach((obj, ind) => {
+        resultsRender.push(<ResultBox
+
+          key={`${ind} ${obj.Title}`}
+          title={obj.Title}
+          year={obj.Year}
+          ratings={obj.Ratings}
+          posterUrl={obj.Poster}
+          />)
+      })
+    }
+
+
+
+
     return (
       <section id='page'>
     <div id='searchCont'>
@@ -85,8 +109,7 @@ class SearchBar extends Component {
       <button id='searchButton' onClick={this.handleClick}>Search Films</button>
     </div>
     <div id='resultCont'>
-      <h1>Testing</h1>
-      <ResultBox title={'yeah'}/>
+      {resultsRender}
     </div>
     </section>
 )
