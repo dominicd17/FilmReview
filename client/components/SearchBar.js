@@ -8,7 +8,7 @@ import { render } from 'react-dom';
 
 const fetchTitle = async (input) => {
 
-  let results = await fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt4154796&r=json", {
+  let results = await fetch(`https://movie-database-imdb-alternative.p.rapidapi.com/?i=${input}&r=json`, {
     "method": "GET",
     "headers": {
       "x-rapidapi-key": "5a35e21c05msh291692817a34746p16806ajsn36bd5b37492a",
@@ -54,26 +54,36 @@ class SearchBar extends Component {
       results: [],
     };
     this.handleClick = this.handleClick.bind(this);
+    //his.getInput = this.getInput.bind(this);
   }
 
-  getInput(e) {
-
-  }
+  // getInput(e) {
+  //   let result = document.getElementById('searchbar').value;
+  //   this.setState({ searchText: result});
+  //   console.log(this.state.searchText)
+  // }
 
   async handleClick(e) {
-    console.log(e)
-    //let newResult = await fetchTitle();
-    //this.setState({results: [newResult]})
-    //fetchIMDB('Avengers');
-    //console.log(this.state)
+
+    let search = await document.getElementById('searchbar').value;
+    console.log(search)
+    let searchID = await fetchIMDB(search);
+    let finalResult = await fetchTitle(searchID);
+    this.setState({results: [finalResult]})
+    console.log(this.state);
+    document.getElementById('searchbar').value = ''
+
   }
 
   render() {
     return (
     <div id='searchCont'>
        <label htmlFor="site-search"></label>
-        <input type='search' id='searchbar'></input>
+        <input type='search' id='searchbar' ></input>
       <button id='searchButton' onClick={this.handleClick}>Search Films</button>
+      <div id='resultCont'>
+
+      </div>
     </div>
 )
   }
