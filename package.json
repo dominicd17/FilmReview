@@ -4,6 +4,9 @@
   "description": "Film Review Hub",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",
+    "build": "webpack",
+    "dev": "webpack serve --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,6 +32,12 @@
     "webpack-dev-server": "^3.11.2"
   },
   "devDependencies": {
-    "babel-loader": "^8.2.2"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "concurrently": "^6.2.1",
+    "webpack-cli": "^4.7.2"
   }
 }
