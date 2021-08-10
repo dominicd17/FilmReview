@@ -1,0 +1,34 @@
+{
+  "name": "filmreview",
+  "version": "1.0.0",
+  "description": "Film Review Hub",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominicd17/FilmReview.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dominicd17/FilmReview/issues"
+  },
+  "homepage": "https://github.com/dominicd17/FilmReview#readme",
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "css-loader": "^6.2.0",
+    "express": "^4.17.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.37.5",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.49.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "devDependencies": {
+    "babel-loader": "^8.2.2"
+  }
+}
