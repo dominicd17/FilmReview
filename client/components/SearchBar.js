@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 // import fetch from 'fetch';
 
-const fetchTitle = (input) => {
+const fetchTitle = async (input) => {
 
-  fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt4154796&r=json", {
+  return fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt4154796&r=json", {
     "method": "GET",
     "headers": {
       "x-rapidapi-key": "5a35e21c05msh291692817a34746p16806ajsn36bd5b37492a",
@@ -12,6 +12,7 @@ const fetchTitle = (input) => {
     }
   })
   .then(response => response.json())
+  .then(obj => obj)
   .catch(err => {
     console.error(err);
   });
