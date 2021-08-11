@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import ResultBox from './ResultBox'
+import { Button } from '@material-ui/core';
 // import fetch from 'fetch';
 
 
@@ -109,7 +110,7 @@ class SearchBar extends Component {
     <div id='searchCont'>
        <label htmlFor="site-search"></label>
         <input type='search' id='searchbar' ></input>
-      <button id='searchButton' onClick={this.handleClick}>Search Films</button>
+      <Button variant='contained' color='primary' id='searchButton' onClick={this.handleClick}>Search Films</Button>
     </div>
     <div id='resultCont'>
       {resultsRender}

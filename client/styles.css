@@ -68,6 +68,7 @@ body {
   
 
 .movieTitle {
+  text-align: center;
   margin: auto;
   font-size: 32px;
   font-weight: bold;

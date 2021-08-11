@@ -14,9 +14,10 @@ class App extends Component {
     this.saveFav = this.saveFav.bind(this);
   }
 
-  saveFav (obj) {
-    this.setState({savedMovies: [...this.state.savedMovies, obj.target.value]})
-    //console.log(obj.target.value)
+  async saveFav (obj) {
+    if (this.state.savedMovies.includes(obj.target.value)) return;
+    await this.setState({savedMovies: [...this.state.savedMovies, obj.target.value]})
+    console.log(this.state.savedMovies)
   }
 
   render() {
@@ -27,5 +28,6 @@ class App extends Component {
     )
   }
 }
+
 
 export default App;
