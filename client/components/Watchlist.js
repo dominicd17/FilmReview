@@ -50,9 +50,10 @@ class Watchlist extends Component {
     let username = await document.getElementById('usernameLogin').value;
     let password = await document.getElementById('passwordLogin').value;
     let body = {username: username, password: password };
+    console.log(body)
 
-    await fetch('/user', {
-      method: 'GET',
+    await fetch('/user/login', {
+      method: 'POST',
       headers: {
           'Content-Type': 'Application/JSON'
         },
@@ -60,12 +61,17 @@ class Watchlist extends Component {
       })
         .then(res => res.json())
         .then(data => {
+          if (data.err) {
+            alert('Username & Password do not match');
+            document.getElementById('usernameLogin').value = '';
+            document.getElementById('passwordLogin').value = '';
+          }
+          else{
           this.setState({ user: data, createUser: false, loggedIn: true });
           console.log(this.state)
+          }
         })
-        .catch(err => console.log('error in create user fetch get user'))
-
-
+        .catch(err => console.log(err))
   }
 
 
@@ -84,7 +90,7 @@ class Watchlist extends Component {
         <div id ='login'>
           <input className='loginInput' id='usernameLogin' type="text" placeholder="Enter Username" name="uname" required />
           <input className='loginInput' id='passwordLogin' type="password" placeholder="Enter Password" name="psw" required />
-          <Button id='loginButton' type="submit" variant='contained' color='primary'>Login</Button>
+          <Button id='loginButton' type="submit" variant='contained' color='primary' onClick={this.userLogin}>Login</Button>
           <div id='createUserButton'>
           <Button id='createButton' type="submit" variant='contained' color='primary' onClick={this.createUserSwitch}>Create User</Button>
           </div>
