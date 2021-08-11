@@ -25,7 +25,7 @@ app.use('/user', userRouter);
 
 userRouter.post('/', userController.createUser);
 
-userRouter.get('/', userController.loginUser);
+userRouter.post('/login', userController.loginUser);
 
 
 

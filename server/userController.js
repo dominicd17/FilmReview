@@ -20,6 +20,11 @@ createUser(req, res) {
 loginUser(req, res){
 
   User.findOne({ username: req.body.username, password: req.body.password }, (err, user) => {
+
+   if (!user) {
+     return res.status(400).send({err: 'Username & Password Do not match'})
+   }
+
     if (err){
       res.status(400).send('Error: Problem connecting to database')
     }
