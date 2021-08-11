@@ -42,7 +42,9 @@ const fetchIMDB = async (title) => {
 });
 
 console.log(results);
-return results.d[0].id;
+// return results.d[0].id;
+
+return results.d
 
 }
 
@@ -67,19 +69,42 @@ class SearchBar extends Component {
   }
 
 
+  // async handleClick(e) {
+
+  //   await this.setState({ results: []});
+  //   let search = await document.getElementById('searchbar').value;
+  //   document.getElementById('searchbar').value = ''
+  //   let searchID = await fetchIMDB(search);
+  //   console.log(searchID)
+  //   if (searchID[0] === '/') return document.getElementById('searchbar').value = 'Could not find title';
+  //   else{
+  //   let finalResult = await fetchTitle(searchID);
+  //   this.setState({results: [finalResult]})
+  //   console.log(this.state);
+  //   }
+  // }
+
   async handleClick(e) {
 
     await this.setState({ results: []});
     let search = await document.getElementById('searchbar').value;
     document.getElementById('searchbar').value = ''
-    let searchID = await fetchIMDB(search);
-    console.log(searchID)
-    if (searchID[0] === '/') return document.getElementById('searchbar').value = 'Could not find title';
-    else{
-    let finalResult = await fetchTitle(searchID);
-    this.setState({results: [finalResult]})
-    console.log(this.state);
-    }
+    let searchArray = await fetchIMDB(search);
+    let searchField = await searchArray.filter(el => el.id[0] != '/').map((el) => {
+      if (el.id[0] != '/'){
+        let newObj = fetchTitle(el.id);
+        return newObj
+      }
+    })
+    let results = await Promise.all(searchField)
+    console.log(results)
+    this.setState({results: results})
+    // if (searchID[0] === '/') return document.getElementById('searchbar').value = 'Could not find title';
+    // else{
+    // let finalResult = await fetchTitle(searchID);
+    // this.setState({results: [finalResult]})
+    // console.log(this.state);
+    // }
   }
 
   render() {
