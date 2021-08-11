@@ -20,8 +20,11 @@ body {
 }
 
 #searchBar{
-  width: 60%;
-  height: 30px;
+  font-style: italic;
+  font-family: 'Anton', sans-serif;
+  font-size: 24px;
+  width: 65%;
+  height: 40px;
 }
 
 #searchCont {
@@ -51,11 +54,16 @@ body {
   align-items: center;
   background: rgb(151, 151, 151);
   color: white;
-  width: 60%;
+  width: 50%;
   border-style: solid;
   border-color: black;
   z-index: 10;
   box-shadow: 100px, 100px, white;
+}
+
+.results:hover {
+  border-width: 2px;
+  border-color: rgba(255, 255, 0, 0.664);
 }
   
 
@@ -66,15 +74,20 @@ body {
 }
 
 .ratings {
-  margin: auto;
+  margin: 5px;
   font-size: 26px;
   font-weight: bold;
 }
 
 .poster {
-  margin: 5px;
+  margin: 10px;
   max-height: 350px;
   border-radius: 3px;
   border-style: solid;
   border-color: black;
 }
+
+#savFav {
+  margin: 10px;
+}
+
