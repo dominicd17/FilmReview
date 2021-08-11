@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import SearchBar from './SearchBar'
+import Watchlist from './Watchlist'
 
 
 
@@ -23,6 +24,7 @@ class App extends Component {
   render() {
     return(
       <section id='main'>
+        <Watchlist />
         <SearchBar savFav={this.saveFav}/>
       </section>
     )
