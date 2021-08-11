@@ -1,11 +1,15 @@
 
 body {
-  /* background: url('https://i.ytimg.com/vi/dqoHcfMn6Ck/maxresdefault.jpg'); */
-  background: rgb(88, 88, 88)
+  background: url('https://i.ytimg.com/vi/dqoHcfMn6Ck/maxresdefault.jpg');
+  /* background: rgb(235, 235, 235) */
 }
 
 .headers {
-  color: white;
+  font-style: italic;
+  font-family: 'Anton', sans-serif;
+  font-size: 42px;
+  color: yellow;
+  margin-top: 35px;
   /* z-index: 10; */
 
 }
@@ -23,7 +27,8 @@ body {
 #searchCont {
   display:flex;
   justify-content: center;
-  width: 100%
+  width: 100%;
+  margin: 20px;
 }
 
 #resultCont {
@@ -31,6 +36,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
 
 #page {
@@ -43,12 +49,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: grey;
+  background: rgb(151, 151, 151);
   color: white;
   width: 60%;
   border-style: solid;
   border-color: black;
-  box-shadow: 10px, 10px, grey;
+  z-index: 10;
+  box-shadow: 100px, 100px, white;
 }
   
 

@@ -59,7 +59,7 @@ class SearchBar extends Component {
     super();
     this.state = {
       searchText: '',
-      results: [dummyObj],
+      results: [],
     };
     this.handleClick = this.handleClick.bind(this);
   
@@ -68,17 +68,17 @@ class SearchBar extends Component {
 
   async handleClick(e) {
 
-    // await this.setState({ results: []});
-    // let search = await document.getElementById('searchbar').value;
-    // document.getElementById('searchbar').value = ''
-    // let searchID = await fetchIMDB(search);
-    // console.log(searchID)
-    // if (searchID[0] === '/') return document.getElementById('searchbar').value = 'Could not find title';
-    // else{
-    // let finalResult = await fetchTitle(searchID);
-    // this.setState({results: [finalResult]})
-    // console.log(this.state);
-    // }
+    await this.setState({ results: []});
+    let search = await document.getElementById('searchbar').value;
+    document.getElementById('searchbar').value = ''
+    let searchID = await fetchIMDB(search);
+    console.log(searchID)
+    if (searchID[0] === '/') return document.getElementById('searchbar').value = 'Could not find title';
+    else{
+    let finalResult = await fetchTitle(searchID);
+    this.setState({results: [finalResult]})
+    console.log(this.state);
+    }
   }
 
   render() {
@@ -88,12 +88,15 @@ class SearchBar extends Component {
     if (this.state.results.length) {
       this.state.results.forEach((obj, ind) => {
         resultsRender.push(<ResultBox
+        
 
+          savFav={this.props.savFav}
           key={`${ind} ${obj.Title}`}
           title={obj.Title}
           year={obj.Year}
           ratings={obj.Ratings}
           posterUrl={obj.Poster}
+          allProps={obj}
           />)
       })
     }

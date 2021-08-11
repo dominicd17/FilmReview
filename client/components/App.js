@@ -8,14 +8,21 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: ''
+      user: '',
+      savedMovies: [],
     }
+    this.saveFav = this.saveFav.bind(this);
+  }
+
+  saveFav (obj) {
+    this.setState({savedMovies: [...this.state.savedMovies, obj.target.value]})
+    //console.log(obj.target.value)
   }
 
   render() {
     return(
       <section id='main'>
-        <SearchBar/>
+        <SearchBar savFav={this.saveFav}/>
       </section>
     )
   }
