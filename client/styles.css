@@ -10,6 +10,8 @@ body {
   font-size: 42px;
   color: yellow;
   margin-top: 35px;
+  text-shadow: 2px 2px 8px #FF0000;
+  letter-spacing: 4px;
   /* z-index: 10; */
 
 }
@@ -75,6 +77,7 @@ body {
 }
 
 .ratings {
+  text-align: center;
   margin: 5px;
   font-size: 26px;
   font-weight: bold;
@@ -92,3 +95,19 @@ body {
   margin: 10px;
 }
 
+#imdb {
+  
+  color: yellow;
+  margin-top: 35px;
+  text-shadow: 2px 2px 8px #FF0000;
+}
+
+#rt{
+  color: #F02200;
+  text-shadow: 2px 2px 8px #5FED81;
+}
+
+#mc{
+  color: #02F000;
+  text-shadow: 2px 2px 8px #943439;
+}
