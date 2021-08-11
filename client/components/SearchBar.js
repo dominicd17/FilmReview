@@ -41,7 +41,7 @@ const fetchIMDB = async (title) => {
 	console.error(err);
 });
 
-//console.log(results);
+console.log(results);
 return results.d[0].id;
 
 }
