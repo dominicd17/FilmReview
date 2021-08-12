@@ -50,8 +50,22 @@ return results.d
 const dummyObj = {
   Title: 'Avengers End Game Babeey',
   Year: '2019',
-  Ratings: [{Source: 'IMDB', Value: 10}, {Source: 'METACRITIC', Value: 10}, {Source: 'ROTTEN TOMATOES', Value: 10}],
-  Poster: 'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg'
+  Ratings: [{Source: 'Internet Movie Database', Value: 10}, {Source: 'Metacritic', Value: 10}, {Source: 'Rotten Tomatoes', Value: 10}],
+  Poster: './../assets/codesmith.png'
+}
+
+const codesmith = {
+  Title: 'Codesmith - Live Action Film',
+  Year: '2021',
+  Ratings: [{Source: 'Internet Movie Database', Value: '2.6/10'}, {Source: 'Metacritic', Value: '23/100'}, {Source: 'Rotten Tomatoes', Value: '.008%'}],
+  Poster: 'https://media.bizj.us/view/img/10197713/codesmithwillsentance*1024xx2048-1154-0-0.jpg'
+}
+
+const gfuel = {
+  Title: 'This app is sponsered by Gfuel',
+  Year: 'Ahad paid me 5 bucks to do this',
+  Ratings: [{Source: 'Gfuel', Value: 'NOT APPROVED'},],
+  Poster: 'https://static.displate.com/280x392/displate/2019-02-26/57bb421de88adb6a75f2d48e7e17fb95_2b27ba577f53616735dfd44b2dc05554.jpg'
 }
 
 
@@ -73,6 +87,15 @@ class SearchBar extends Component {
 
     await this.setState({ results: []});
     let search = await document.getElementById('searchbar').value;
+
+    if (search == 'codesmith'){
+      this.setState ({ results: [codesmith] });
+      return
+    }
+    if (search == 'gfuel'){
+      this.setState ({ results: [gfuel] });
+      return
+    }
     document.getElementById('searchbar').value = ''
     let searchArray = await fetchIMDB(search);
     const promiseArr = []
