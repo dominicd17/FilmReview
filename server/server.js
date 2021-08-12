@@ -27,6 +27,10 @@ userRouter.post('/', userController.createUser);
 
 userRouter.post('/login', userController.loginUser);
 
+userRouter.post('/save', (req, res) => {
+  return res.status(200).send(res.locals.updatedUser)
+} )
+
 
 
 

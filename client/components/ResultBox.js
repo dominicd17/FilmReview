@@ -33,7 +33,7 @@ class ResultBox extends Component {
       {/* <p className='ratings' id='imdb'>{this.props.ratings[0].Source + " Rating "}{this.props.ratings[0].Value}</p>
       <p className='ratings' id='rt'>{this.props.ratings[1].Source + " Rating "}{this.props.ratings[1].Value}</p>
       <p className='ratings' id='mc'>{this.props.ratings[2].Source + " Rating "}{this.props.ratings[2].Value}</p> */}
-      <Button variant='contained' color='default' id='savFav' value={this.props.title} onClick={this.props.savFav}>Save Favorite</Button>
+      <button variant='contained' color='default' id='savFav' value={this.props.title} onClick={this.props.savFav}>Save</button>
     </div>
     )
   } 

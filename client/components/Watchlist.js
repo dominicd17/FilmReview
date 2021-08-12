@@ -23,7 +23,7 @@ class Watchlist extends Component {
 
   async createUser (e) {
 
-    console.log(document.getElementById('createUsername').value)
+    //console.log(document.getElementById('createUsername').value)
     let username = await document.getElementById('createUsername').value;
     let password = await document.getElementById('createPassword').value;
     let body = {username: username, password: password };
@@ -38,7 +38,7 @@ class Watchlist extends Component {
           .then(res => res.json())
           .then(data => {
             this.setState({ user: data, createUser: false, loggedIn: true });
-            console.log(this.state)
+            //console.log(this.state)
           })
           .catch(err => console.log('error in create user fetch post'))
 
@@ -50,7 +50,7 @@ class Watchlist extends Component {
     let username = await document.getElementById('usernameLogin').value;
     let password = await document.getElementById('passwordLogin').value;
     let body = {username: username, password: password };
-    console.log(body)
+    //console.log(body)
 
     await fetch('/user/login', {
       method: 'POST',
@@ -68,10 +68,11 @@ class Watchlist extends Component {
           }
           else{
           this.setState({ user: data, createUser: false, loggedIn: true });
-          console.log(this.state)
+          //console.log(this.state)
           }
         })
         .catch(err => console.log(err))
+        this.props.getUser(this.state.user)
   }
 
 
@@ -79,9 +80,9 @@ class Watchlist extends Component {
 
     const favorites = [];
 
-    if (this.state.loggedIn){
-      this.state.user.favorites.forEach((str) => {
-        favorites.push(<p className='favoriteList' key={str}>{string}</p>)
+    if (this.state.loggedIn && this.props.savedMovies.length){
+      this.props.savedMovies.forEach((str) => {
+        favorites.push(<li className='favoriteList' key={str}>{str}</li>)
       })
     }
 
@@ -109,9 +110,11 @@ class Watchlist extends Component {
     if (this.state.loggedIn) {
       return (
         <div id='userField'>
-          <p className='userInfo'>Welcome! {' ' + this.state.user.username}</p>
-          <p className='userInfo'>Your Favorites:</p>
+          <p className='userInfo'>Welcome {' ' + this.state.user.username + '!'}</p>
+          <p className='userInfo'>Your Watchlist:</p>
+          <ul>
           {favorites}
+          </ul>
         </div>
       )
     }
