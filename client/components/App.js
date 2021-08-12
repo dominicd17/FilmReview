@@ -22,7 +22,7 @@ class App extends Component {
     let body = {username: this.state.user.username, favorites: this.state.savedMovies}
     console.log(this.state.savedMovies)
 
-    await fetch('/save', {
+    await fetch('user/save', {
       method: 'POST',
       headers: {'Content-Type': 'Application/JSON'},
       body: JSON.stringify(body)
@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   getUser(user){
-    this.setState({ user: user})
+    this.setState({ user: user, savedMovies: user.favorites})
     console.log(this.state)
   }
 
