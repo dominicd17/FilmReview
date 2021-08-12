@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import ResultBox from './ResultBox'
 import { Button } from '@material-ui/core';
-// import fetch from 'fetch';
 
 
 
@@ -69,20 +68,6 @@ class SearchBar extends Component {
   }
 
 
-  // async handleClick(e) {
-
-  //   await this.setState({ results: []});
-  //   let search = await document.getElementById('searchbar').value;
-  //   document.getElementById('searchbar').value = ''
-  //   let searchID = await fetchIMDB(search);
-  //   console.log(searchID)
-  //   if (searchID[0] === '/') return document.getElementById('searchbar').value = 'Could not find title';
-  //   else{
-  //   let finalResult = await fetchTitle(searchID);
-  //   this.setState({results: [finalResult]})
-  //   console.log(this.state);
-  //   }
-  // }
 
   async handleClick(e) {
 
@@ -90,21 +75,17 @@ class SearchBar extends Component {
     let search = await document.getElementById('searchbar').value;
     document.getElementById('searchbar').value = ''
     let searchArray = await fetchIMDB(search);
-    let searchField = await searchArray.filter(el => el.id[0] != '/').map((el) => {
+    const promiseArr = []
+    await searchArray.filter(el => el.id[0] != '/').forEach((el) => {
       if (el.id[0] != '/'){
         let newObj = fetchTitle(el.id);
-        return newObj
+        if (newObj != undefined) promiseArr.push(newObj);
       }
     })
-    let results = await Promise.all(searchField)
-    console.log(results)
-    this.setState({results: results})
-    // if (searchID[0] === '/') return document.getElementById('searchbar').value = 'Could not find title';
-    // else{
-    // let finalResult = await fetchTitle(searchID);
-    // this.setState({results: [finalResult]})
-    // console.log(this.state);
-    // }
+    let results = await Promise.all(promiseArr)
+    let filteredResults = await results.filter((el) => el != undefined)
+    //console.log(results)
+    this.setState({results: filteredResults})
   }
 
   render() {

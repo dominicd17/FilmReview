@@ -8,12 +8,12 @@ class Watchlist extends Component {
       username: '',
       loggedIn: false,
       createUser: false,
-      favorites: [],
       user: undefined,
     }
     this.createUserSwitch = this.createUserSwitch.bind(this);
     this.createUser = this.createUser.bind(this);
     this.userLogin = this.userLogin.bind(this);
+    this.deleteFavs = this.deleteFavs.bind(this);
   }
 
   createUserSwitch (e) {
@@ -75,6 +75,39 @@ class Watchlist extends Component {
         this.props.getUser(this.state.user)
   }
 
+  onFavoritesClick(e) {
+    document.getElementById('searchbar').value = e.target.innerText;
+    document.getElementById('searchButton').click();
+  }
+
+  async deleteFavs(e) {
+    e.preventDefault();
+    // console.log('right Clicked');
+    // console.log(e.target.innerText);
+    // console.log(this.props.savedMovies);
+    const newFavorites = await this.props.savedMovies.filter((el) => el != e.target.innerText);
+    const body = { username: this.state.user.username, favorites: newFavorites };
+
+    await fetch('/user/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON'
+      },
+      body: JSON.stringify(body)
+    })
+      .then(res => res.json())
+      .then(newUser => {
+
+        this.props.getUser(newUser)
+        this.setState ({ user: newUser })
+        
+      })
+      .catch(err => console.log(err))
+    
+    
+     
+  }
+
 
   render() {
 
@@ -82,9 +115,10 @@ class Watchlist extends Component {
 
     if (this.state.loggedIn && this.props.savedMovies.length){
       this.props.savedMovies.forEach((str) => {
-        favorites.push(<li className='favoriteList' key={str}>{str}</li>)
+        favorites.push(<li className='favoriteList' onContextMenu={this.deleteFavs} key={str} onClick={this.onFavoritesClick}>{str + ' '}</li>)
       })
     }
+
 
     if (!this.state.loggedIn && !this.state.createUser){
       return (
@@ -112,7 +146,7 @@ class Watchlist extends Component {
         <div id='userField'>
           <p className='userInfo'>Welcome {' ' + this.state.user.username + '!'}</p>
           <p className='userInfo'>Your Watchlist:</p>
-          <ul>
+          <ul className ='favsList'>
           {favorites}
           </ul>
         </div>

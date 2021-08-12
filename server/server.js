@@ -31,6 +31,10 @@ userRouter.post('/save', userController.updateUser, (req, res) => {
   return res.status(200).send(res.locals.updatedUser)
 } )
 
+userRouter.post('/delete', userController.deleteFav, (req, res) => {
+  return res.status(200).send(res.locals.updatedUser)
+})
+
 
 
 

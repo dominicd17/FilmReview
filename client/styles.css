@@ -159,3 +159,21 @@ body {
   text-shadow: 2px 2px 8px #FF0000;
   cursor: pointer;
 }
+/* 
+.favsList {
+  display: flex;
+  flex-direction: column;
+  flex: wrap;
+  justify-content: center;
+  align-items: center;
+} */
+
+#delete {
+  margin-left: 20px;
+  color: Red;
+  font-size: 15px;
+}
+
+#delete:hover {
+  text-shadow: 2px 2px 8px #FF0000;
+}

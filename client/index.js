@@ -6,7 +6,7 @@ import App from './components/App'
 
 
 
-// uncomment so that webpack can bundle styles
+
 
 render(
   <App />,

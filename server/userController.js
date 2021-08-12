@@ -35,7 +35,7 @@ loginUser(req, res){
   })
 },
 
-async updateUser(req, res){
+async updateUser(req, res, next){
 
   const user = await User.findOne({ username: req.body.username });
   user.favorites = req.body.favorites;
@@ -45,8 +45,18 @@ async updateUser(req, res){
   return next();
 
 
-}
+},
 
+async deleteFav(req, res, next){
+
+  const user = await User.findOne({ username: req.body.username });
+  user.favorites = req.body.favorites;
+  await user.save();
+  res.locals.updatedUser = user;
+  
+  return next();
+
+}
 }
 
 
